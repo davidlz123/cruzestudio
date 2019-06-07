@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block cuerpo %}
+
+<div class="container">
+<div class="card">
+    <div class="card-body">
+		<form class="forms-group" role="form" action="{% url 'agenda:nuevo_contacto' %}" method="post" enctype="multipart/form-data" >
+			<h3 class="card-title">Nuevo Contacto</h3>
+            <p class="card-description">  </p>
+
+            <div class="body">
+				{% csrf_token %}
+				<div class="form-group">
+                                <label> <p>Nombre</p> {{ form.nombre }}</label>
+                                <label> <p>Apellidos</p> {{ form.apellidos }}</label>
+                                <label> <p>Razón Social</p> {{ form.razon_social }}</label>
+                                <label> <p>Cargo</p> {{ form.cargo }}</label>
+                                <label> <p>Teléfono</p> {{ form.telefono }}</label>
+                                <label> <p>Email</p> {{ form.email }}</label>
+                                <label> <p>CP</p> {{ form.cod_postal }}</label>
+                                <label> <p>Web/Blog</p> {{ form.web_blog }}</label>
+                                <label> <p>Dirección</p> {{ form.dir_calle }}</label>
+                                <label> <p>Número</p> {{ form.dir_numero }}</label>
+                                <label> <p>Puerta</p> {{ form.dir_piso_puerta }}</label>
+                                <label> <p>Fecha Alta</p> {{ form.fecha_alta }}</label>
+                                        <p> Tipo Contacto <br> {{form.tipo_contacto}}</p>
+                                        <p> Tipo Documento <br> {{form.tipo_documento}}</p>
+                                        <p> Número Documento <br> {{form.num_documento}}</p>
+                                        <p> Población <br> {{form.poblacion}}</p>
+                                        <p> Provincia <br> {{form.provincias}}</p>
+                            </div>
+			</div>
+
+			<div>
+				<div class="col-lg-12 text-right">
+					<input type="submit" class="btn btn-primary" name="submit" value="Guardar">
+					<a role="button" class="btn btn-outline-danger" href="{{request.META.HTTP_REFERER}}">Cancelar</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+
+{% endblock cuerpo %}

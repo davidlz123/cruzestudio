@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=albaran.pk %}
+{% endwith %}
+
+
+<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+					<h5 class=" text-center"> <strong>Albarán</strong></h5>
+					<h2 class="card-title text-right"> Cod. Albarán: &nbsp;&nbsp;
+						<label><strong>{{ albaran.cod_albaran | default_if_none:""}}</strong></label></h2>
+
+					<div class="row">
+                      <div class="col-12 table-responsive">
+						<table id="tabla" class="table">
+						  <thead>
+							<tr>
+								 <th>Numero Pedido</th>
+								 <th>Descripción </th>
+								 <th>Lote</th>
+								 <th>Fecha</th>
+							</tr>
+						  </thead>
+
+						  <tbody>
+								<tr>
+									<td>&nbsp;<label>{{ albaran.pedido.numero_pedido | default_if_none:""  }}</label></td>
+									<td>&nbsp;<label>{{ albaran.pedido.descripcion | default_if_none:""  }}</label></td>
+									<td>&nbsp;<label>{{ albaran.pedido.lote | default_if_none:""  }}</label></td>
+									<td>&nbsp;<label>{{ albaran.pedido.fecha | default_if_none:""  }}</label></td>
+								</tr>
+						  </tbody>
+						</table>
+					  </div>
+					</div>
+			  	</div>
+			  </div>
+		</div>
+
+		<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+					<h2 class="card-title text-center">Información del Cliente </h2>
+                    <p class="card-description">  </p>
+					 <p>Nombre: <label>{{ albaran.cliente.nombre | default_if_none:""  }}&nbsp;{{ albaran.cliente.apellidos | default_if_none:""  }}</label></p>
+					 <p>Tipo Documento: <label>{{ albaran.cliente.tipo_documento_display | default_if_none:""  }}</label></p>
+					 <p>Num Documento: <label>{{ albaran.cliente.num_documento | default_if_none:""  }}</label></p>
+					 <p>Fecha Nacimiento: <label>{{ albaran.cliente.fecha_nacimiento | default_if_none:""  }}</label></p>
+					 <p>Email: <label>{{ albaran.cliente.email | default_if_none:""  }}</label></p>
+					 <p>Teléfono: <label>{{ albaran.cliente.movil | default_if_none:""  }}</label></p>
+					 <p>Dirección: <label>{{ albaran.cliente.dir_calle | default_if_none:""  }} &nbsp; {{ albaran.cliente.dir_numero | default_if_none:""  }} &nbsp; {{ albaran.cliente.dir_piso | default_if_none:""  }}</label></p>
+				</div>
+			  </div>
+		</div>
+
+		 <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+					<h2 class="card-title text-center">Información de la empresa </h2>
+                    <p class="card-description">  </p>
+					 <p> Razón Social: <label> Cruz Estudio S.L</label></p>
+					 <p> CIF : <label> 23847564F</label></p>
+					 <p> Teléfono : <label> 900500400</label></p>
+					 <p> Email : <label> cruzestudio@cruzestudio.com</label></p>
+					 <p> Dirección: <label> Calle Perú n32  </label></p>
+					 <p> CP: <label> 30640</label></p>
+					 <p> Población: <label> Alcantarilla / Murcia</label></p>
+				</div>
+			  </div>
+		</div>
+
+		<div class="col-sm-6 col-md-6 col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h2 class="card-title text-center">Artículos del pedido </h2>
+
+                    <p class="card-description">  </p>
+
+					 <table id="tabla2" class="table">
+                      <thead>
+                        <tr>
+							 <th>Artículos  </th>
+							 <th>Cantidad</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                         {% for var in articulo %}
+                            <tr>
+                                <td>{{ var.cod_articulo.nombre | default_if_none:"" | truncatechars:100 }}</td>
+                                <td>{{ var.cantidad | default_if_none:"" }}</td>
+                            </tr>
+			             {% endfor %}
+                      </tbody>
+                    </table>
+				  </div>
+			  </div>
+		</div>
+
+</div>
+	<div class="col-12 text-right">
+
+		<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'albaranes:listado_albaranes' %}">cerrar</a>
+
+	</div>
+</div>
+
+
+{% endblock cuerpo %}

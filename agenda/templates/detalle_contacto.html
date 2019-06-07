@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block cuerpo %}
+{% with menudetalle="1" pk=contacto.pk %}
+
+{% endwith %}
+<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-box text-primary icon-sm mr-0 mr-sm-4">
+					</i>Foto del Contacto</h3>
+
+					<hr>
+
+                    <p class="card-description">  </p>
+
+					<p>
+						{% if not recurso.foto %}
+							<img src="{%  static 'assets/images/faces/default.png' %}" style="width:230px; height;230px;"></a>
+						{% else %}
+							<img src="{{ contacto.foto.url }}" style="width:230px; height;230px;"></a>
+						{% endif %}
+					</p>
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-card-details text-primary icon-sm mr-0 mr-sm-4">
+					</i>Información de Identificación</h3>
+					  <hr>
+
+					<p>Nombre Completo:		&nbsp;	<label>{{ contacto.nombre | default_if_none:"" }}
+												<label>{{ contacto.apellidos | default_if_none:"" }}</label></p>
+                    <p>Tipo Contacto: &nbsp; <label>{{ contacto.tipo_contacto_display | default_if_none:"" }}</label></p>
+					<p>Cargo:   &nbsp;		<label>{{ contacto.cargo | default_if_none:"" }}</label></p>
+                    <p>Razón Social:   &nbsp;<label>{{ contacto.razon_social | default_if_none:"" }}</label></p>
+					<p>Fecha Alta:   &nbsp;  <label>{{ contacto.fecha_alta | default_if_none:"" }}</label></p>
+
+
+				</div>
+			</div>
+		</div>
+
+				<!-- card 1-->
+		<div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+
+					<h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-account-box-outline text-primary icon-sm mr-0 mr-sm-4">
+					</i>Información de Contacto</h3>
+					<hr>
+
+                    <p class="card-description">  </p>
+
+                    <p>Tipo Documento:		<label>{{ contacto.tipo_documento_display }}</label></p>
+                    <p>Número Documento:&nbsp;		<label>{{ contacto.num_documento | default_if_none:""}}</label></p>
+                    <p>Email:&nbsp;		<label>{{ contacto.email | default_if_none:""}}</label></p>
+					<p>Telefono:&nbsp;	<label>{{ contacto.telefono | default_if_none:""}}</label></p>
+					<p>Web Blog:&nbsp; <label>{{ contacto.web_blog | default_if_none:""}}</label></p>
+					<p></p>
+
+                    <h3 class="card-title"></h3>
+					<h3 class="card-title"><i class="mdi mdi-earth  icon-sm text-primary mr-0 mr-sm-4 mt-3">
+					</i>Dirección</h3>
+					<hr>
+					<p>Calle:		    <label>{{ contacto.dir_calle | default_if_none:""}}</label></p>
+					<p>Número:		    <label>{{ contacto.dir_numero | default_if_none:""}}</label></p>
+					<p>Piso/Puerta:		<label>{{ contacto.dir_piso | default_if_none:""}}</label></p>
+					<p>C.P:   			<label>{{ contacto.codigo_postal | default_if_none:""}}</label></p>
+					<p>Provincia:		<label>{{ contacto.provincias | default_if_none:""}}</label></p>
+					<p>Población:		<label>{{ contacto.poblacion | default_if_none:""}}</label></p>
+				</div>
+			  </div>
+        </div>
+</div>
+		<div class="modal-footer">
+			<a role="button" class="btn btn-outline-danger btn-sm" href="{% url 'agenda:listado_contactos' %}">volver</a>
+		</div>
+
+{% endblock cuerpo %}
