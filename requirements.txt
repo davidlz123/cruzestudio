@@ -1,2 +1,10 @@
-django==2.2.1
-django-extensions
+Django==2.2.1
+django-extensions==2.1.4
+pkg-resources==0.0.0
+python-dateutil==2.7.5
+pytz==2019.1
+six==1.12.0
+sqlparse==0.3.0
+Pillow==6.0.0
+psycopg2-binary
+raven==6.9.0
